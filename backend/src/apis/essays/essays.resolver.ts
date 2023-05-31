@@ -9,6 +9,6 @@ export class EssaysResolver {
 
   @Query(() => String)
   fetchEssay(): string {
-    return this.essaysService.read();
+    return this.essaysService.fetchEssay();
   }
 }

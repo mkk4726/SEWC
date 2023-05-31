@@ -6,26 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
-const apollo_1 = require("@nestjs/apollo");
+exports.UsersModule = void 0;
 const common_1 = require("@nestjs/common");
-const graphql_1 = require("@nestjs/graphql");
-const essays_modules_1 = require("./apis/essays/essays.modules");
-const users_modules_1 = require("./apis/users/users.modules");
-let AppModule = class AppModule {
+const users_resolver_1 = require("./users.resolver.");
+const users_service_1 = require("./users.service");
+let UsersModule = class UsersModule {
 };
-AppModule = __decorate([
+UsersModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            essays_modules_1.EssaysModule,
-            users_modules_1.UsersModule,
-            graphql_1.GraphQLModule.forRoot({
-                driver: apollo_1.ApolloDriver,
-                autoSchemaFile: 'src/commons/graphql/schema.gql',
-            }),
+        imports: [],
+        providers: [
+            users_resolver_1.UsersResolver,
+            users_service_1.UsersService,
         ],
-        providers: [],
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], UsersModule);
+exports.UsersModule = UsersModule;
+//# sourceMappingURL=users.modules.js.map

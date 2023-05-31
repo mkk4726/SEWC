@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class EssaysService {
-  read(): string {
+  fetchEssay(): string {
     return 'TechDept';
   }
 }
