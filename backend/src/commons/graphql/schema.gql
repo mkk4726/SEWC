@@ -3,6 +3,18 @@
 # ------------------------------------------------------
 
 type Query {
-  fetchEssay: String!
+  fetchEssay(id: Float!): String!
   fetchUser: String!
+}
+
+type Mutation {
+  createEssay(createEssayInput: CreateEssayInput!): String!
+}
+
+input CreateEssayInput {
+  title: String!
+  input_text: String!
+  output_text: String!
+  memo: String!
+  feedback: String!
 }

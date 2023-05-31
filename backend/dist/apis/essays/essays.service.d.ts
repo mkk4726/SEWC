@@ -1,3 +1,5 @@
+import { IEssayServiceCreateEssay, IEssaysServiceFetchEssay } from './interfaces/essays-service.interfaces';
 export declare class EssaysService {
-    read(): string;
+    fetchEssay({ id }: IEssaysServiceFetchEssay): string;
+    createEssay({ createEssayInput }: IEssayServiceCreateEssay): string;
 }
