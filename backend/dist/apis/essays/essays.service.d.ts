@@ -4,6 +4,6 @@ import { Essay } from './entities/essay.entity';
 export declare class EssaysService {
     private readonly essayRepository;
     constructor(essayRepository: Repository<Essay>);
-    fetchEssay({ id }: IEssaysServiceFetchEssay): string;
-    createEssay({ createEssayInput, }: IEssayServiceCreateEssay): Promise<Essay>;
+    findOne({ id }: IEssaysServiceFetchEssay): Promise<Essay>;
+    create({ createEssayInput }: IEssayServiceCreateEssay): Promise<Essay>;
 }

@@ -21,10 +21,10 @@ let EssaysService = class EssaysService {
     constructor(essayRepository) {
         this.essayRepository = essayRepository;
     }
-    fetchEssay({ id }) {
-        return `input: ${id} , TechDept`;
+    findOne({ id }) {
+        return this.essayRepository.findOne({ where: { id } });
     }
-    async createEssay({ createEssayInput, }) {
+    async create({ createEssayInput }) {
         const result = await this.essayRepository.save(Object.assign({}, createEssayInput));
         return result;
     }

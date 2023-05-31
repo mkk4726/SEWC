@@ -9,17 +9,17 @@ export class EssaysResolver {
     private readonly essaysService: EssaysService, //
   ) {}
 
-  @Query(() => String)
+  @Query(() => Essay)
   fetchEssay(
     @Args('id') id: number, //
-  ): string {
-    return this.essaysService.fetchEssay({ id });
+  ): Promise<Essay> {
+    return this.essaysService.findOne({ id });
   }
 
   @Mutation(() => Essay)
   async createEssay(
     @Args('createEssayInput') createEssayInput: CreateEssayInput,
   ): Promise<Essay> {
-    return await this.essaysService.createEssay({ createEssayInput });
+    return await this.essaysService.create({ createEssayInput });
   }
 }

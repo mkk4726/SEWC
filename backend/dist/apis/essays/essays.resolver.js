@@ -22,18 +22,18 @@ let EssaysResolver = class EssaysResolver {
         this.essaysService = essaysService;
     }
     fetchEssay(id) {
-        return this.essaysService.fetchEssay({ id });
+        return this.essaysService.findOne({ id });
     }
     async createEssay(createEssayInput) {
-        return await this.essaysService.createEssay({ createEssayInput });
+        return await this.essaysService.create({ createEssayInput });
     }
 };
 __decorate([
-    (0, graphql_1.Query)(() => String),
+    (0, graphql_1.Query)(() => essay_entity_1.Essay),
     __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Promise)
 ], EssaysResolver.prototype, "fetchEssay", null);
 __decorate([
     (0, graphql_1.Mutation)(() => essay_entity_1.Essay),

@@ -14,13 +14,11 @@ export class EssaysService {
     private readonly essayRepository: Repository<Essay>, //
   ) {}
 
-  fetchEssay({ id }: IEssaysServiceFetchEssay): string {
-    return `input: ${id} , TechDept`;
+  findOne({ id }: IEssaysServiceFetchEssay): Promise<Essay> {
+    return this.essayRepository.findOne({ where: { id } });
   }
 
-  async createEssay({
-    createEssayInput,
-  }: IEssayServiceCreateEssay): Promise<Essay> {
+  async create({ createEssayInput }: IEssayServiceCreateEssay): Promise<Essay> {
     const result = await this.essayRepository.save({
       ...createEssayInput,
     });
