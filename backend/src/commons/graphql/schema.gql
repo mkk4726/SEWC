@@ -2,19 +2,34 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Essay {
+  id: Int!
+  title: String!
+  input_text: String!
+  output_text: String!
+  memo: String
+  feedback: String!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   fetchEssay(id: Float!): String!
   fetchUser: String!
 }
 
 type Mutation {
-  createEssay(createEssayInput: CreateEssayInput!): String!
+  createEssay(createEssayInput: CreateEssayInput!): Essay!
 }
 
 input CreateEssayInput {
   title: String!
   input_text: String!
   output_text: String!
-  memo: String!
+  memo: String = "none"
   feedback: String!
 }

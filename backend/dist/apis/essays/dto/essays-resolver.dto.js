@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateEssayInput.prototype, "output_text", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
+    (0, graphql_1.Field)(() => String, { nullable: true, defaultValue: 'none' }),
     __metadata("design:type", String)
 ], CreateEssayInput.prototype, "memo", void 0);
 __decorate([

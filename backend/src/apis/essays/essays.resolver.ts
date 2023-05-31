@@ -1,4 +1,5 @@
 import { CreateEssayInput } from './dto/essays-resolver.dto';
+import { Essay } from './entities/essay.entity';
 import { EssaysService } from './essays.service';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 
@@ -15,10 +16,10 @@ export class EssaysResolver {
     return this.essaysService.fetchEssay({ id });
   }
 
-  @Mutation(() => String)
-  createEssay(
+  @Mutation(() => Essay)
+  async createEssay(
     @Args('createEssayInput') createEssayInput: CreateEssayInput,
-  ): string {
-    return this.essaysService.createEssay({ createEssayInput });
+  ): Promise<Essay> {
+    return await this.essaysService.createEssay({ createEssayInput });
   }
 }

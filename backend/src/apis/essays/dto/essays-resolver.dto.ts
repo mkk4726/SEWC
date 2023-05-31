@@ -11,7 +11,7 @@ export class CreateEssayInput {
   @Field(() => String)
   output_text: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true, defaultValue: 'none' })
   memo: string;
 
   @Field(() => String)

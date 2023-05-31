@@ -1,4 +1,4 @@
-import { Field, Int } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { User } from 'src/apis/users/entities/user.entity';
 import {
   Column,
@@ -9,7 +9,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity() // typeorm
+@ObjectType() //graphql
 export class Essay {
   @PrimaryGeneratedColumn('increment') // typeorm
   @Field(() => Int) // GraphQL
@@ -28,7 +29,7 @@ export class Essay {
   output_text: string;
 
   @Column()
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   memo: string;
 
   @Column() // typeorm

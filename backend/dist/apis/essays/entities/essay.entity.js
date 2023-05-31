@@ -37,7 +37,7 @@ __decorate([
 ], Essay.prototype, "output_text", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(() => String),
+    (0, graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Essay.prototype, "memo", void 0);
 __decorate([
@@ -56,7 +56,8 @@ __decorate([
     __metadata("design:type", user_entity_1.User)
 ], Essay.prototype, "user", void 0);
 Essay = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    (0, graphql_1.ObjectType)()
 ], Essay);
 exports.Essay = Essay;
 //# sourceMappingURL=essay.entity.js.map

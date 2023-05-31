@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EssaysResolver = void 0;
 const essays_resolver_dto_1 = require("./dto/essays-resolver.dto");
+const essay_entity_1 = require("./entities/essay.entity");
 const essays_service_1 = require("./essays.service");
 const graphql_1 = require("@nestjs/graphql");
 let EssaysResolver = class EssaysResolver {
@@ -23,8 +24,8 @@ let EssaysResolver = class EssaysResolver {
     fetchEssay(id) {
         return this.essaysService.fetchEssay({ id });
     }
-    createEssay(createEssayInput) {
-        return this.essaysService.createEssay({ createEssayInput });
+    async createEssay(createEssayInput) {
+        return await this.essaysService.createEssay({ createEssayInput });
     }
 };
 __decorate([
@@ -35,11 +36,11 @@ __decorate([
     __metadata("design:returntype", String)
 ], EssaysResolver.prototype, "fetchEssay", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => String),
+    (0, graphql_1.Mutation)(() => essay_entity_1.Essay),
     __param(0, (0, graphql_1.Args)('createEssayInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [essays_resolver_dto_1.CreateEssayInput]),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Promise)
 ], EssaysResolver.prototype, "createEssay", null);
 EssaysResolver = __decorate([
     (0, graphql_1.Resolver)(),
