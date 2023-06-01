@@ -17,6 +17,8 @@ const graphql_1 = require("@nestjs/graphql");
 const users_service_1 = require("./users.service");
 const users_resolver_dto_1 = require("./dto/users-resolver.dto");
 const user_entity_1 = require("./entities/user.entity");
+const common_1 = require("@nestjs/common");
+const gql_auth_guards_1 = require("../auth/guards/gql-auth.guards");
 let UsersResolver = class UsersResolver {
     constructor(usersService) {
         this.usersService = usersService;
@@ -29,6 +31,7 @@ let UsersResolver = class UsersResolver {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(gql_auth_guards_1.GqlAuthAccessGuard),
     (0, graphql_1.Query)(() => String),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
