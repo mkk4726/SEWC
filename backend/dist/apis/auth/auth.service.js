@@ -13,9 +13,14 @@ exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("../users/users.service");
 const bcrypt = require("bcrypt");
+const dist_1 = require("@nestjs/jwt/dist");
 let AuthService = class AuthService {
-    constructor(userService) {
+    constructor(userService, jwtService) {
         this.userService = userService;
+        this.jwtService = jwtService;
+    }
+    getAccessToken({ user }) {
+        return this.jwtService.sign({ sub: user.id }, { secret: 'myPassword', expiresIn: '1h' });
     }
     async login({ loginInput }) {
         const user = await this.userService.findOneByEmail({
@@ -26,12 +31,13 @@ let AuthService = class AuthService {
         const isAuth = bcrypt.compare(loginInput.password, user.password);
         if (!isAuth)
             throw new common_1.UnprocessableEntityException('암호가 틀렸습니다.');
-        return 'accessToken ( tech dept )';
+        return this.getAccessToken({ user });
     }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [users_service_1.UsersService])
+    __metadata("design:paramtypes", [users_service_1.UsersService,
+        dist_1.JwtService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

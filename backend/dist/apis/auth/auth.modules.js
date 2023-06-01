@@ -11,11 +11,13 @@ const common_1 = require("@nestjs/common");
 const auth_resolver_1 = require("./auth.resolver");
 const auth_service_1 = require("./auth.service");
 const users_modules_1 = require("../users/users.modules");
+const jwt_1 = require("@nestjs/jwt");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            jwt_1.JwtModule.register({}),
             users_modules_1.UsersModule,
         ],
         providers: [
