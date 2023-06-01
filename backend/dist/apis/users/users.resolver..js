@@ -31,7 +31,7 @@ let UsersResolver = class UsersResolver {
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(gql_auth_guards_1.GqlAuthAccessGuard),
+    (0, common_1.UseGuards)((0, gql_auth_guards_1.GqlAuthGuard)('access')),
     (0, graphql_1.Query)(() => String),
     __param(0, (0, graphql_1.Context)()),
     __metadata("design:type", Function),

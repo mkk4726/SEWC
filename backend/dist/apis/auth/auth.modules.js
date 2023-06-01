@@ -13,6 +13,7 @@ const auth_service_1 = require("./auth.service");
 const users_modules_1 = require("../users/users.modules");
 const jwt_1 = require("@nestjs/jwt");
 const jwt_access_strategy_1 = require("./strategies/jwt-access.strategy");
+const jwt_refresh_strategy_1 = require("./strategies/jwt-refresh.strategy");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -25,6 +26,7 @@ AuthModule = __decorate([
             auth_resolver_1.AuthResolver,
             auth_service_1.AuthService,
             jwt_access_strategy_1.JwtAccessStrategy,
+            jwt_refresh_strategy_1.JwtRefreshStrategy,
         ],
     })
 ], AuthModule);

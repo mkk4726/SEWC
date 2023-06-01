@@ -38,6 +38,9 @@ let AuthService = class AuthService {
         const refreshToken = this.jwtService.sign({ sub: user.id }, { secret: 'myRefreshToken', expiresIn: '2w' });
         context.res.setHeader('set-Cookie', `refreshToken=${refreshToken}; path=/;`);
     }
+    restoreAccessToken({ user }) {
+        return this.getAccessToken({ user });
+    }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),

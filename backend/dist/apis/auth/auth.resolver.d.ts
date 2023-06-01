@@ -5,4 +5,5 @@ export declare class AuthResolver {
     private readonly authService;
     constructor(authService: AuthService);
     login(loginInput: LoginInput, context: IContext): Promise<string>;
+    restoreAccessToken(Context: IContext): string;
 }

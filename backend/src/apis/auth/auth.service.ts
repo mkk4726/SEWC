@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
 import {
   IAuthServiceGetAccessToken,
   IAuthServiceLogin,
+  IAuthServiceRestoreAccessToken,
   IAuthServiceSetRefreshToken,
 } from './interfaces/auth-service.interface';
 import { JwtService } from '@nestjs/jwt/dist';
@@ -70,7 +71,7 @@ export class AuthService {
       `refreshToken=${refreshToken}; path=/;`,
     );
 
-    // 배포환경
+    // 배포환경 , 보안을 위한 추가 셋팅 필요
     // context.res.setHeader(
     //   'set-Cookie',
     //   `refreshToken=${refreshToken}; path=/; domain=.mybacksite.com; SameSite=None; Secure; httpOnly`,
@@ -79,5 +80,9 @@ export class AuthService {
     //   'Access-Control-Allow-Origin',
     //   'https://myfrontsite.com',
     // );
+  }
+
+  restoreAccessToken({ user }: IAuthServiceRestoreAccessToken) {
+    return this.getAccessToken({ user });
   }
 }

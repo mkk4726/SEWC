@@ -33,6 +33,7 @@ type Query {
 
 type Mutation {
   login(loginInput: LoginInput!): String!
+  restoreAccessToken: String!
   createUser(createUserInput: CreateUserInput!): User!
   createEssay(createEssayInput: CreateEssayInput!): Essay!
 }

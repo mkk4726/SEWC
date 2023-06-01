@@ -16,12 +16,17 @@ exports.AuthResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const auth_service_1 = require("./auth.service");
 const auth_resolver_dto_1 = require("./dto/auth-resolver.dto");
+const common_1 = require("@nestjs/common");
+const gql_auth_guards_1 = require("./guards/gql-auth.guards");
 let AuthResolver = class AuthResolver {
     constructor(authService) {
         this.authService = authService;
     }
     login(loginInput, context) {
         return this.authService.login({ loginInput, context });
+    }
+    restoreAccessToken(Context) {
+        return this.authService.restoreAccessToken({ user: Context.req.user });
     }
 };
 __decorate([
@@ -32,6 +37,14 @@ __decorate([
     __metadata("design:paramtypes", [auth_resolver_dto_1.LoginInput, Object]),
     __metadata("design:returntype", Promise)
 ], AuthResolver.prototype, "login", null);
+__decorate([
+    (0, common_1.UseGuards)((0, gql_auth_guards_1.GqlAuthGuard)('refresh')),
+    (0, graphql_1.Mutation)(() => String),
+    __param(0, (0, graphql_1.Context)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", String)
+], AuthResolver.prototype, "restoreAccessToken", null);
 AuthResolver = __decorate([
     (0, graphql_1.Resolver)(),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
