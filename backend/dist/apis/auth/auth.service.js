@@ -20,7 +20,7 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     getAccessToken({ user }) {
-        return this.jwtService.sign({ sub: user.id }, { secret: 'myPassword', expiresIn: '1h' });
+        return this.jwtService.sign({ sub: user.id, email: user.email }, { secret: 'myPassword', expiresIn: '1h' });
     }
     async login({ loginInput }) {
         const user = await this.userService.findOneByEmail({

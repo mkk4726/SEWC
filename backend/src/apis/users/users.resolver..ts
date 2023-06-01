@@ -1,9 +1,10 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { CreateUserInput } from './dto/users-resolver.dto';
 import { User } from './entities/user.entity';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthAccessGuard } from '../auth/guards/gql-auth.guards';
+import { IContext } from './interfaces/users-resolver.interface';
 // import { AuthGuard } from '@nestjs/passport';
 
 @Resolver()
@@ -19,7 +20,11 @@ export class UsersResolver {
   // GQL에서는 GqlAuthAccessGuard를 먼저 실행시켜서 통과되면 AuthGuard를 실행시킨다. ( auth/guards )
   @UseGuards(GqlAuthAccessGuard)
   @Query(() => String)
-  fetchUser(): string {
+  fetchUser(
+    // context 내부에는 req, res(header, body)뿐만 아니라, validate를 통해 보내주는 payload 정보까지 존재
+    @Context() context: IContext, //
+  ): string {
+    // console.log(context.req.user);
     return this.usersService.find();
   }
 

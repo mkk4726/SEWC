@@ -22,7 +22,7 @@ export class AuthService {
   // get JWT token
   getAccessToken({ user }: IAuthServiceGetAccessToken) {
     return this.jwtService.sign(
-      { sub: user.id }, // json data
+      { sub: user.id, email: user.email }, // json data
       // 유저정보가 담긴 payload
       { secret: 'myPassword', expiresIn: '1h' }, // secretKey
       // 서명된 JWT를 생성할 때 사용하는 키

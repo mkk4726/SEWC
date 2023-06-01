@@ -23,7 +23,8 @@ let UsersResolver = class UsersResolver {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    fetchUser() {
+    fetchUser(context) {
+        console.log(context.req.user);
         return this.usersService.find();
     }
     createUser(createUserInput) {
@@ -33,8 +34,9 @@ let UsersResolver = class UsersResolver {
 __decorate([
     (0, common_1.UseGuards)(gql_auth_guards_1.GqlAuthAccessGuard),
     (0, graphql_1.Query)(() => String),
+    __param(0, (0, graphql_1.Context)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", String)
 ], UsersResolver.prototype, "fetchUser", null);
 __decorate([
