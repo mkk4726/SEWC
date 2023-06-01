@@ -15,11 +15,13 @@ const users_modules_1 = require("./apis/users/users.modules");
 const typeorm_1 = require("@nestjs/typeorm");
 const essay_entity_1 = require("./apis/essays/entities/essay.entity");
 const user_entity_1 = require("./apis/users/entities/user.entity");
+const auth_modules_1 = require("./apis/auth/auth.modules");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            auth_modules_1.AuthModule,
             essays_modules_1.EssaysModule,
             users_modules_1.UsersModule,
             graphql_1.GraphQLModule.forRoot({

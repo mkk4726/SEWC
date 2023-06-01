@@ -6,9 +6,11 @@ import { UsersModule } from './apis/users/users.modules';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Essay } from './apis/essays/entities/essay.entity';
 import { User } from './apis/users/entities/user.entity';
+import { AuthModule } from './apis/auth/auth.modules';
 
 @Module({
   imports: [
+    AuthModule,
     EssaysModule,
     UsersModule,
     // code-first 방식의 nestjs-graphql 셋팅
