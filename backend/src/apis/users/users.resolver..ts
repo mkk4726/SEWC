@@ -9,11 +9,13 @@ export class UsersResolver {
     private readonly usersService: UsersService, //
   ) {}
 
+  // 유저조회
   @Query(() => String)
   fetchUser(): string {
     return this.usersService.find();
   }
 
+  // 회원가입
   @Mutation(() => User)
   createUser(
     @Args('createUserInput') createUserInput: CreateUserInput, //

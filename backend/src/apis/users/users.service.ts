@@ -16,16 +16,19 @@ export class UsersService {
     private readonly usersRepository: Repository<User>, //
   ) {}
 
+  // User 조회
   find(): string {
     return 'UserID ( tech dept)';
   }
 
+  // email로 User 조회
   findOneByEmail({ email }: IUsersServiceFindOneByEmail): Promise<User> {
     return this.usersRepository.findOne({
       where: { email },
     });
   }
 
+  // 회원가입
   async create({ createUserInput }: IUsersServiceCreate): Promise<User> {
     // 중복 이메일 검증
     const user = await this.findOneByEmail({ email: createUserInput.email });
