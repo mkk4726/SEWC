@@ -24,7 +24,6 @@ let UsersResolver = class UsersResolver {
         this.usersService = usersService;
     }
     fetchUser(context) {
-        console.log(context.req.user);
         return this.usersService.find();
     }
     createUser(createUserInput) {

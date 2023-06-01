@@ -11,7 +11,7 @@ export class JwtAccessStrategy extends PassportStrategy(Strategy, 'access') {
       //   const accessToken = tmp.toLowercase().replace('bearer', '');
       //   return accessToken
       // }
-      secretOrKey: 'myPassword',
+      secretOrKey: 'myAccessToken',
     });
   }
   // 검증에 성공한다면 실행되는 함수
@@ -19,7 +19,7 @@ export class JwtAccessStrategy extends PassportStrategy(Strategy, 'access') {
     // console.log(payload); // { sub : user.id, email: user.email}
     return {
       id: payload.sub,
-      email: payload.email,
+      // email: payload.email,
       // context안의 req안에 user안에 저장됨. user:{id: payload.sub, email:payload.email}
       // context는 요청 정보이기에 API 중간중간 어디서든 뽑아서 사용할 수 있다.
     };

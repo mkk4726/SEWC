@@ -20,15 +20,16 @@ let AuthResolver = class AuthResolver {
     constructor(authService) {
         this.authService = authService;
     }
-    login(loginInput) {
-        return this.authService.login({ loginInput });
+    login(loginInput, context) {
+        return this.authService.login({ loginInput, context });
     }
 };
 __decorate([
     (0, graphql_1.Mutation)(() => String),
     __param(0, (0, graphql_1.Args)('loginInput')),
+    __param(1, (0, graphql_1.Context)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [auth_resolver_dto_1.LoginInput]),
+    __metadata("design:paramtypes", [auth_resolver_dto_1.LoginInput, Object]),
     __metadata("design:returntype", Promise)
 ], AuthResolver.prototype, "login", null);
 AuthResolver = __decorate([

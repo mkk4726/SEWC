@@ -4,7 +4,6 @@ export declare class JwtAccessStrategy extends JwtAccessStrategy_base {
     constructor();
     validate(payload: any): {
         id: any;
-        email: any;
     };
 }
 export {};

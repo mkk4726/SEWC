@@ -7,13 +7,12 @@ class JwtAccessStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.
     constructor() {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: 'myPassword',
+            secretOrKey: 'myAccessToken',
         });
     }
     validate(payload) {
         return {
             id: payload.sub,
-            email: payload.email,
         };
     }
 }

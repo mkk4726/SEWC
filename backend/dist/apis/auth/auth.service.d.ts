@@ -1,10 +1,11 @@
 import { UsersService } from '../users/users.service';
-import { IAuthServiceGetAccessToken, IAuthServiceLogin } from './interfaces/auth-service.interface';
+import { IAuthServiceGetAccessToken, IAuthServiceLogin, IAuthServiceSetRefreshToken } from './interfaces/auth-service.interface';
 import { JwtService } from '@nestjs/jwt/dist';
 export declare class AuthService {
     private readonly userService;
     private readonly jwtService;
     constructor(userService: UsersService, jwtService: JwtService);
+    login({ loginInput, context }: IAuthServiceLogin): Promise<string>;
     getAccessToken({ user }: IAuthServiceGetAccessToken): string;
-    login({ loginInput }: IAuthServiceLogin): Promise<string>;
+    setRefreshToken({ user, context }: IAuthServiceSetRefreshToken): void;
 }

@@ -17,6 +17,7 @@ import { AuthModule } from './apis/auth/auth.modules';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/commons/graphql/schema.gql',
+      context: ({ req, res }) => ({ req, res }), // req는 기본적으로 들어오지만, res는 이걸 설정해줘야 들어옴
     }),
     // typeorm setting
     TypeOrmModule.forRoot({
