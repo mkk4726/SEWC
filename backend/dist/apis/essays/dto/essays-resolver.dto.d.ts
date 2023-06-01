@@ -4,4 +4,5 @@ export declare class CreateEssayInput {
     output_text: string;
     memo: string;
     feedback: string;
+    userID: string;
 }

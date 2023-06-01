@@ -33,6 +33,10 @@ __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
 ], CreateEssayInput.prototype, "feedback", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], CreateEssayInput.prototype, "userID", void 0);
 CreateEssayInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateEssayInput);

@@ -16,4 +16,7 @@ export class CreateEssayInput {
 
   @Field(() => String)
   feedback: string;
+
+  @Field(() => String)
+  userID: string;
 }

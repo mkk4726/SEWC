@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type User {
-  id: Float!
+  id: String!
   email: String!
   name: String!
   age: Int!
@@ -41,6 +41,7 @@ input CreateEssayInput {
   output_text: String!
   memo: String = "none"
   feedback: String!
+  userID: String!
 }
 
 input CreateUserInput {

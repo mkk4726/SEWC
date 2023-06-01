@@ -16,8 +16,8 @@ let User = class User {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    (0, graphql_1.Field)(() => Number),
-    __metadata("design:type", Number)
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
 ], User.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

@@ -25,8 +25,14 @@ export class EssaysService {
   }
 
   async create({ createEssayInput }: IEssayServiceCreateEssay): Promise<Essay> {
+    const { userID, ...essay } = createEssayInput;
+
     const result = await this.essayRepository.save({
-      ...createEssayInput,
+      ...essay,
+      // userID 값 넣기.
+      user: {
+        id: userID,
+      },
     });
     return result;
   }
