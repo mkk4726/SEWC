@@ -24,6 +24,9 @@ let EssaysService = class EssaysService {
     findOne({ id }) {
         return this.essayRepository.findOne({ where: { id } });
     }
+    findAll() {
+        return this.essayRepository.find({});
+    }
     async create({ createEssayInput }) {
         const result = await this.essayRepository.save(Object.assign({}, createEssayInput));
         return result;

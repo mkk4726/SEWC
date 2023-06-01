@@ -18,6 +18,12 @@ export class EssaysService {
     return this.essayRepository.findOne({ where: { id } });
   }
 
+  findAll(): Promise<Essay[]> {
+    return this.essayRepository.find({
+      // take: 10, // limit
+    });
+  }
+
   async create({ createEssayInput }: IEssayServiceCreateEssay): Promise<Essay> {
     const result = await this.essayRepository.save({
       ...createEssayInput,

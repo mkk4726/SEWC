@@ -16,6 +16,11 @@ export class EssaysResolver {
     return this.essaysService.findOne({ id });
   }
 
+  @Query(() => [Essay])
+  fetchEssays(): Promise<Essay[]> {
+    return this.essaysService.findAll();
+  }
+
   @Mutation(() => Essay)
   async createEssay(
     @Args('createEssayInput') createEssayInput: CreateEssayInput,

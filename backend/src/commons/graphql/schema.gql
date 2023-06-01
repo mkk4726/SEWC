@@ -19,6 +19,7 @@ scalar DateTime
 
 type Query {
   fetchEssay(id: Float!): Essay!
+  fetchEssays: [Essay!]!
   fetchUser: String!
 }
 

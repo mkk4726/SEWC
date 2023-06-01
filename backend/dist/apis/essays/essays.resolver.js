@@ -24,6 +24,9 @@ let EssaysResolver = class EssaysResolver {
     fetchEssay(id) {
         return this.essaysService.findOne({ id });
     }
+    fetchEssays() {
+        return this.essaysService.findAll();
+    }
     async createEssay(createEssayInput) {
         return await this.essaysService.create({ createEssayInput });
     }
@@ -35,6 +38,12 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], EssaysResolver.prototype, "fetchEssay", null);
+__decorate([
+    (0, graphql_1.Query)(() => [essay_entity_1.Essay]),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], EssaysResolver.prototype, "fetchEssays", null);
 __decorate([
     (0, graphql_1.Mutation)(() => essay_entity_1.Essay),
     __param(0, (0, graphql_1.Args)('createEssayInput')),

@@ -5,5 +5,6 @@ export declare class EssaysService {
     private readonly essayRepository;
     constructor(essayRepository: Repository<Essay>);
     findOne({ id }: IEssaysServiceFetchEssay): Promise<Essay>;
+    findAll(): Promise<Essay[]>;
     create({ createEssayInput }: IEssayServiceCreateEssay): Promise<Essay>;
 }
