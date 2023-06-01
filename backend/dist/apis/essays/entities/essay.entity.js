@@ -53,6 +53,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.JoinColumn)(),
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User),
+    (0, graphql_1.Field)(() => user_entity_1.User),
     __metadata("design:type", user_entity_1.User)
 ], Essay.prototype, "user", void 0);
 Essay = __decorate([

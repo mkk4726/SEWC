@@ -18,10 +18,14 @@ export class EssaysService {
     return this.essayRepository.findOne({ where: { id } });
   }
 
-  findAll(): Promise<Essay[]> {
-    return this.essayRepository.find({
+  async findAll(): Promise<Essay[]> {
+    const result = await this.essayRepository.find({
+      relations: ['user'], // 같이 조인해서 조회하도록
       // take: 10, // limit
     });
+    console.log(result);
+
+    return result;
   }
 
   async create({ createEssayInput }: IEssayServiceCreateEssay): Promise<Essay> {

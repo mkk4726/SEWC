@@ -17,7 +17,7 @@ export class Essay {
   id: number;
 
   @Column() // typeorm
-  @Field(() => String) // GraphQL
+  @Field(() => String) // GraphQL , return 타입 정해주는 것. 이거 안쓰면 못받음
   title: string;
 
   @Column() // typeorm
@@ -42,5 +42,6 @@ export class Essay {
 
   @JoinColumn()
   @ManyToOne(() => User)
+  @Field(() => User)
   user: User;
 }

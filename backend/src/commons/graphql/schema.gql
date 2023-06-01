@@ -17,6 +17,7 @@ type Essay {
   memo: String
   feedback: String!
   createdAt: DateTime!
+  user: User!
 }
 
 """

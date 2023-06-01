@@ -35,8 +35,12 @@ let EssaysService = class EssaysService {
     findOne({ id }) {
         return this.essayRepository.findOne({ where: { id } });
     }
-    findAll() {
-        return this.essayRepository.find({});
+    async findAll() {
+        const result = await this.essayRepository.find({
+            relations: ['user'],
+        });
+        console.log(result);
+        return result;
     }
     async create({ createEssayInput }) {
         const { userID } = createEssayInput, essay = __rest(createEssayInput, ["userID"]);

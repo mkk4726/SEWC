@@ -12,6 +12,7 @@ const essays_resolver_1 = require("./essays.resolver");
 const essays_service_1 = require("./essays.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const essay_entity_1 = require("./entities/essay.entity");
+const user_entity_1 = require("../users/entities/user.entity");
 let EssaysModule = class EssaysModule {
 };
 EssaysModule = __decorate([
@@ -19,6 +20,7 @@ EssaysModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forFeature([
                 essay_entity_1.Essay,
+                user_entity_1.User,
             ]),
         ],
         providers: [
