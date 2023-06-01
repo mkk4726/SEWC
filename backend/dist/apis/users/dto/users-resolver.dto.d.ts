@@ -1,5 +1,4 @@
-export declare class User {
-    id: number;
+export declare class CreateUserInput {
     email: string;
     password: string;
     name: string;

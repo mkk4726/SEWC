@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type User {
+  id: Float!
+  email: String!
+  name: String!
+  age: Int!
+}
+
 type Essay {
   id: Int!
   title: String!
@@ -25,6 +32,7 @@ type Query {
 
 type Mutation {
   createEssay(createEssayInput: CreateEssayInput!): Essay!
+  createUser(createUserInput: CreateUserInput!): User!
 }
 
 input CreateEssayInput {
@@ -33,4 +41,11 @@ input CreateEssayInput {
   output_text: String!
   memo: String = "none"
   feedback: String!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  name: String!
+  age: Int!
 }
