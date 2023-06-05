@@ -91,60 +91,26 @@ export class AuthService {
   async OAuthLogin({ req, social }: IAuthServiceOAuthLogin) {
     // google OAuth
     if (social === 'google') {
-      const { picture, ...reqUserInput } = req.user;
-
-      // 1. 회원조회
-      let user = await this.userService.findOneByEmail({
-        email: req.user.email,
-      });
-
-      // 2. 회원가입이 안돼있다면? 자동회원가입
-      if (!user)
-        user = await this.userService.create({
-          createUserInput: reqUserInput,
-        });
-
-      return user;
     }
-
-    // naver OAuth
+    // naver OAuth , 이메일 조회가 안돼서 대체
     if (social === 'naver') {
-      req.user.email = `${req.user.mobile}@naver.com`; // email이 조회가 안돼서 전화번호로 이메일 대체
-      // console.log(req.user.email);
-
-      // 1. 회원조회
-      let user = await this.userService.findOneByEmail({
-        email: req.user.email,
-        // email: 'asdasdasdasd@naver.com',
-      });
-
-      // 2. 회원가입이 안돼있다면? 자동회원가입
-      if (!user)
-        user = await this.userService.create({
-          createUserInput: req.user,
-        });
-
-      return user;
+      req.user.email = `${req.user.mobile}@naver.com`;
     }
-
-    // kakao OAuth
+    // kakao OAuth , 이메일 조회가 안돼서 대체
     if (social === 'kakao') {
       req.user.email = `${req.user.id}@kakao.com`;
-      // console.log(req.user);
+    }
+    // 1. 회원조회
+    let user = await this.userService.findOneByEmail({
+      email: req.user.email,
+    });
 
-      // 1. 회원조회
-      let user = await this.userService.findOneByEmail({
-        email: req.user.email,
-        // email: 'asdasdasdasd@naver.com',
+    // 2. 회원가입이 안돼있다면? 자동회원가입 (DB에 저장)
+    if (!user)
+      user = await this.userService.create({
+        createUserInput: req.user,
       });
 
-      // 2. 회원가입이 안돼있다면? 자동회원가입
-      if (!user)
-        user = await this.userService.create({
-          createUserInput: req.user,
-        });
-
-      return user;
-    }
+    return user;
   }
 }
