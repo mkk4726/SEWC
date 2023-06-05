@@ -38,6 +38,11 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_1.Int),
     __metadata("design:type", Number)
 ], User.prototype, "age", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
+    (0, graphql_1.Field)(() => Date),
+    __metadata("design:type", Date)
+], User.prototype, "createdAt", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

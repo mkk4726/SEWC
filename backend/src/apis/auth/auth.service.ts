@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
 import {
   IAuthServiceGetAccessToken,
   IAuthServiceLogin,
+  IAuthServiceOAuthLogin,
   IAuthServiceRestoreAccessToken,
   IAuthServiceSetRefreshToken,
 } from './interfaces/auth-service.interface';
@@ -83,14 +84,67 @@ export class AuthService {
     return this.getAccessToken({ user });
   }
 
-  // google OAuth
-  googleLogin({ req }) {
-    if (!req.user) {
-      return 'No user from google';
+  // ---------------------------------------------------------------------------------------------- //
+  // OAUth 설정
+
+  // OAuth Login
+  async OAuthLogin({ req, social }: IAuthServiceOAuthLogin) {
+    // google OAuth
+    if (social === 'google') {
+      const { picture, ...reqUserInput } = req.user;
+
+      // 1. 회원조회
+      let user = await this.userService.findOneByEmail({
+        email: req.user.email,
+      });
+
+      // 2. 회원가입이 안돼있다면? 자동회원가입
+      if (!user)
+        user = await this.userService.create({
+          createUserInput: reqUserInput,
+        });
+
+      return user;
     }
 
-    // this.userService.findOneByEmail({req.user.email});
+    // naver OAuth
+    if (social === 'naver') {
+      req.user.email = `${req.user.mobile}@naver.com`; // email이 조회가 안돼서 전화번호로 이메일 대체
+      // console.log(req.user.email);
 
-    return req.user;
+      // 1. 회원조회
+      let user = await this.userService.findOneByEmail({
+        email: req.user.email,
+        // email: 'asdasdasdasd@naver.com',
+      });
+
+      // 2. 회원가입이 안돼있다면? 자동회원가입
+      if (!user)
+        user = await this.userService.create({
+          createUserInput: req.user,
+        });
+
+      return user;
+    }
+
+    // kakao OAuth
+    if (social === 'kakao') {
+      req.user.email = `${req.user.id}@kakao.com`;
+      // console.log(req.user);
+
+      // 1. 회원조회
+      let user = await this.userService.findOneByEmail({
+        email: req.user.email,
+        // email: 'asdasdasdasd@naver.com',
+      });
+
+      // 2. 회원가입이 안돼있다면? 자동회원가입
+      if (!user)
+        user = await this.userService.create({
+          createUserInput: req.user,
+        });
+
+      return user;
+    }
   }
 }

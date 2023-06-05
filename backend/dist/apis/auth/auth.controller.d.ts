@@ -1,19 +1,10 @@
 import { AuthService } from './auth.service';
 import { Request, Response } from 'express';
-import { UsersService } from '../users/users.service';
-interface IOAuthUser {
-    user: {
-        name: string;
-        email: string;
-        picture: string;
-        age: number;
-        password: string;
-    };
-}
+import { IOAuthUser } from './interfaces/auth-controller.interface';
 export declare class AuthController {
     private readonly authService;
-    private readonly usersService;
-    constructor(authService: AuthService, usersService: UsersService);
+    constructor(authService: AuthService);
     loginGoogle(req: Request & IOAuthUser, res: Response): Promise<void>;
+    loginNaver(req: Request & IOAuthUser, res: Response): Promise<void>;
+    loginKakao(req: Request & IOAuthUser, res: Response): Promise<void>;
 }
-export {};

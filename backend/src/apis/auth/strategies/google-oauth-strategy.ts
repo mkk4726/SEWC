@@ -11,7 +11,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       clientSecret: process.env.OAUTH_GOOGLE_SECRET,
       callbackURL: process.env.OAUTH_GOOGLE_REDIRECT,
       // 가져올 정보
-      scope: ['email', 'profile', 'age'],
+      scope: ['email', 'profile'],
     });
   }
 

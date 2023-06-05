@@ -4,4 +4,5 @@ export declare class User {
     password: string;
     name: string;
     age: number;
+    createdAt: Date;
 }

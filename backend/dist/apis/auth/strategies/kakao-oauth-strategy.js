@@ -9,33 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GoogleStrategy = void 0;
+exports.KakaoStrategy = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
-const passport_google_oauth20_1 = require("passport-google-oauth20");
-let GoogleStrategy = class GoogleStrategy extends (0, passport_1.PassportStrategy)(passport_google_oauth20_1.Strategy, 'google') {
+const passport_kakao_1 = require("passport-kakao");
+let KakaoStrategy = class KakaoStrategy extends (0, passport_1.PassportStrategy)(passport_kakao_1.Strategy, 'kakao') {
     constructor() {
         super({
-            clientID: process.env.OAUTH_GOOGLE_ID,
-            clientSecret: process.env.OAUTH_GOOGLE_SECRET,
-            callbackURL: process.env.OAUTH_GOOGLE_REDIRECT,
-            scope: ['email', 'profile'],
+            clientID: process.env.OAUTH_KAKAO_ID,
+            clientSecret: process.env.OAUTH_KAKAO_SECRET,
+            callbackURL: process.env.OAUTH_KAKAO_REDIRECT,
+            scope: ['account_email', 'profile_nickname'],
         });
     }
     validate(accessToken, refreshToken, profile) {
-        const { id, name, emails, photos } = profile;
         return {
             name: profile.displayName,
-            email: emails[0].value,
-            picture: photos[0].value,
+            email: profile.email,
             password: '0000',
             age: 0,
+            id: profile.id,
         };
     }
 };
-GoogleStrategy = __decorate([
+KakaoStrategy = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [])
-], GoogleStrategy);
-exports.GoogleStrategy = GoogleStrategy;
-//# sourceMappingURL=google-oauth-strategy.js.map
+], KakaoStrategy);
+exports.KakaoStrategy = KakaoStrategy;
+//# sourceMappingURL=kakao-oauth-strategy.js.map

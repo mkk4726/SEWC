@@ -1,5 +1,10 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -23,4 +28,8 @@ export class User {
   @Column()
   @Field(() => Int)
   age: number;
+
+  @CreateDateColumn() // typeorm
+  @Field(() => Date) // GraphQL
+  createdAt: Date;
 }

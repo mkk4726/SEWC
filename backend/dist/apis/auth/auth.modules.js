@@ -16,6 +16,8 @@ const jwt_access_strategy_1 = require("./strategies/jwt-access.strategy");
 const jwt_refresh_strategy_1 = require("./strategies/jwt-refresh.strategy");
 const auth_controller_1 = require("./auth.controller");
 const google_oauth_strategy_1 = require("./strategies/google-oauth-strategy");
+const naver_oauth_strategy_1 = require("./strategies/naver-oauth-strategy");
+const kakao_oauth_strategy_1 = require("./strategies/kakao-oauth-strategy");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -33,6 +35,8 @@ AuthModule = __decorate([
             jwt_access_strategy_1.JwtAccessStrategy,
             jwt_refresh_strategy_1.JwtRefreshStrategy,
             google_oauth_strategy_1.GoogleStrategy,
+            naver_oauth_strategy_1.NaverStrategy,
+            kakao_oauth_strategy_1.KakaoStrategy,
         ],
     })
 ], AuthModule);

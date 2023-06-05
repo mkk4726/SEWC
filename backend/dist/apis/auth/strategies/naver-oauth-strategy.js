@@ -9,33 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GoogleStrategy = void 0;
+exports.NaverStrategy = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
-const passport_google_oauth20_1 = require("passport-google-oauth20");
-let GoogleStrategy = class GoogleStrategy extends (0, passport_1.PassportStrategy)(passport_google_oauth20_1.Strategy, 'google') {
+const passport_naver_v2_1 = require("passport-naver-v2");
+let NaverStrategy = class NaverStrategy extends (0, passport_1.PassportStrategy)(passport_naver_v2_1.Strategy, 'naver') {
     constructor() {
         super({
-            clientID: process.env.OAUTH_GOOGLE_ID,
-            clientSecret: process.env.OAUTH_GOOGLE_SECRET,
-            callbackURL: process.env.OAUTH_GOOGLE_REDIRECT,
-            scope: ['email', 'profile'],
+            clientID: process.env.OAUTH_NAVER_ID,
+            clientSecret: process.env.OAUTH_NAVER_SECRET,
+            callbackURL: process.env.OAUTH_NAVER_REDIRECT,
+            scope: ['email', 'name'],
         });
     }
     validate(accessToken, refreshToken, profile) {
-        const { id, name, emails, photos } = profile;
         return {
-            name: profile.displayName,
-            email: emails[0].value,
-            picture: photos[0].value,
+            name: profile.name,
+            email: profile.email,
             password: '0000',
-            age: 0,
+            age: Number(profile.birthYear),
+            picture: profile.profileImage,
+            mobile: profile.mobile,
         };
     }
 };
-GoogleStrategy = __decorate([
+NaverStrategy = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [])
-], GoogleStrategy);
-exports.GoogleStrategy = GoogleStrategy;
-//# sourceMappingURL=google-oauth-strategy.js.map
+], NaverStrategy);
+exports.NaverStrategy = NaverStrategy;
+//# sourceMappingURL=naver-oauth-strategy.js.map
