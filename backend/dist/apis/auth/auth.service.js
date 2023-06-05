@@ -28,18 +28,24 @@ let AuthService = class AuthService {
         const isAuth = bcrypt.compare(loginInput.password, user.password);
         if (!isAuth)
             throw new common_1.UnprocessableEntityException('암호가 틀렸습니다.');
-        this.setRefreshToken({ user, context });
+        this.setRefreshToken({ user, res: context.res });
         return this.getAccessToken({ user });
     }
     getAccessToken({ user }) {
         return this.jwtService.sign({ sub: user.id }, { secret: 'myAccessToken', expiresIn: '1h' });
     }
-    setRefreshToken({ user, context }) {
+    setRefreshToken({ user, res }) {
         const refreshToken = this.jwtService.sign({ sub: user.id }, { secret: 'myRefreshToken', expiresIn: '2w' });
-        context.res.setHeader('set-Cookie', `refreshToken=${refreshToken}; path=/;`);
+        res.setHeader('set-Cookie', `refreshToken=${refreshToken}; path=/;`);
     }
     restoreAccessToken({ user }) {
         return this.getAccessToken({ user });
+    }
+    googleLogin({ req }) {
+        if (!req.user) {
+            return 'No user from google';
+        }
+        return req.user;
     }
 };
 AuthService = __decorate([

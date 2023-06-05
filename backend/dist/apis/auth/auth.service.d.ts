@@ -7,6 +7,9 @@ export declare class AuthService {
     constructor(userService: UsersService, jwtService: JwtService);
     login({ loginInput, context }: IAuthServiceLogin): Promise<string>;
     getAccessToken({ user }: IAuthServiceGetAccessToken): string;
-    setRefreshToken({ user, context }: IAuthServiceSetRefreshToken): void;
+    setRefreshToken({ user, res }: IAuthServiceSetRefreshToken): void;
     restoreAccessToken({ user }: IAuthServiceRestoreAccessToken): string;
+    googleLogin({ req }: {
+        req: any;
+    }): any;
 }

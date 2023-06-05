@@ -39,7 +39,7 @@ export class AuthService {
     if (!isAuth) throw new UnprocessableEntityException('암호가 틀렸습니다.');
 
     // 4. refreshToken(=JWT)을 만들어서 브라우저 쿠키에 저장해서 보내주기
-    this.setRefreshToken({ user, context });
+    this.setRefreshToken({ user, res: context.res });
 
     //4. 일치하는 유저 존재 && 비밀번호 일치 -> return JWT token
     return this.getAccessToken({ user });
@@ -59,17 +59,14 @@ export class AuthService {
   }
 
   // cache에 refreshToken 담기
-  setRefreshToken({ user, context }: IAuthServiceSetRefreshToken): void {
+  setRefreshToken({ user, res }: IAuthServiceSetRefreshToken): void {
     const refreshToken = this.jwtService.sign(
       { sub: user.id },
       { secret: 'myRefreshToken', expiresIn: '2w' },
     );
 
     // 개발환경
-    context.res.setHeader(
-      'set-Cookie',
-      `refreshToken=${refreshToken}; path=/;`,
-    );
+    res.setHeader('set-Cookie', `refreshToken=${refreshToken}; path=/;`);
 
     // 배포환경 , 보안을 위한 추가 셋팅 필요
     // context.res.setHeader(
@@ -84,5 +81,16 @@ export class AuthService {
 
   restoreAccessToken({ user }: IAuthServiceRestoreAccessToken) {
     return this.getAccessToken({ user });
+  }
+
+  // google OAuth
+  googleLogin({ req }) {
+    if (!req.user) {
+      return 'No user from google';
+    }
+
+    // this.userService.findOneByEmail({req.user.email});
+
+    return req.user;
   }
 }

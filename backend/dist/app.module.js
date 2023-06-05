@@ -16,12 +16,14 @@ const typeorm_1 = require("@nestjs/typeorm");
 const essay_entity_1 = require("./apis/essays/entities/essay.entity");
 const user_entity_1 = require("./apis/users/entities/user.entity");
 const auth_modules_1 = require("./apis/auth/auth.modules");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             auth_modules_1.AuthModule,
+            config_1.ConfigModule.forRoot(),
             essays_modules_1.EssaysModule,
             users_modules_1.UsersModule,
             graphql_1.GraphQLModule.forRoot({
@@ -33,11 +35,11 @@ AppModule = __decorate([
                 type: 'mysql',
                 host: 'localhost',
                 port: 3306,
-                username: 'root',
-                password: 'kmgkdw227',
-                database: 'sewc',
+                username: process.env.MYSQL_USERNAME,
+                password: process.env.MYSQL_PASSWORD,
+                database: process.env.MYSQL_DATABASE,
                 entities: [essay_entity_1.Essay, user_entity_1.User],
-                synchronize: true,
+                synchronize: false,
                 logging: true,
             }),
         ],

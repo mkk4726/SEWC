@@ -14,6 +14,8 @@ const users_modules_1 = require("../users/users.modules");
 const jwt_1 = require("@nestjs/jwt");
 const jwt_access_strategy_1 = require("./strategies/jwt-access.strategy");
 const jwt_refresh_strategy_1 = require("./strategies/jwt-refresh.strategy");
+const auth_controller_1 = require("./auth.controller");
+const google_oauth_strategy_1 = require("./strategies/google-oauth-strategy");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -22,11 +24,15 @@ AuthModule = __decorate([
             jwt_1.JwtModule.register({}),
             users_modules_1.UsersModule,
         ],
+        controllers: [
+            auth_controller_1.AuthController,
+        ],
         providers: [
             auth_resolver_1.AuthResolver,
             auth_service_1.AuthService,
             jwt_access_strategy_1.JwtAccessStrategy,
             jwt_refresh_strategy_1.JwtRefreshStrategy,
+            google_oauth_strategy_1.GoogleStrategy,
         ],
     })
 ], AuthModule);
