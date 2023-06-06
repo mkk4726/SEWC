@@ -8,12 +8,14 @@ import { Essay } from './apis/essays/entities/essay.entity';
 import { User } from './apis/users/entities/user.entity';
 import { AuthModule } from './apis/auth/auth.modules';
 import { ConfigModule } from '@nestjs/config';
+import { ChatGPTModule } from './apis/chatgpt/chatgqt.modules';
 
 @Module({
   imports: [
     AuthModule,
     // .env파일 세팅
     ConfigModule.forRoot(),
+    ChatGPTModule,
     EssaysModule,
     UsersModule,
     // code-first 방식의 nestjs-graphql 셋팅

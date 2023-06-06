@@ -17,6 +17,7 @@ const essay_entity_1 = require("./apis/essays/entities/essay.entity");
 const user_entity_1 = require("./apis/users/entities/user.entity");
 const auth_modules_1 = require("./apis/auth/auth.modules");
 const config_1 = require("@nestjs/config");
+const chatgqt_modules_1 = require("./apis/chatgpt/chatgqt.modules");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -24,6 +25,7 @@ AppModule = __decorate([
         imports: [
             auth_modules_1.AuthModule,
             config_1.ConfigModule.forRoot(),
+            chatgqt_modules_1.ChatGPTModule,
             essays_modules_1.EssaysModule,
             users_modules_1.UsersModule,
             graphql_1.GraphQLModule.forRoot({

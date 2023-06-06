@@ -28,6 +28,7 @@ type Essay {
 
 type Query {
   fetchUser: String!
+  checkEssay(essay: String!): String!
   fetchEssay(id: Float!): Essay!
   fetchEssays: [Essay!]!
 }
